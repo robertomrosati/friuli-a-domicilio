@@ -1,0 +1,188 @@
+____ Friuli a Domicilio v.0.0.1 _____
+inizializzato ambiente su framework CodeIgniter 4.0.2
+
+____ Friuli a Domicilio v.0.0.2 _____
+
+introdotto il controller:
+   Tricesimo
+
+introdotte le view:
+   templates/include
+   templates/header
+   pages/tricesimo
+   templates/footer
+   
+implementato il foglio di stile:
+   friuli_a_domicilio.css
+   
+____ Friuli a Domicilio v.0.0.3 _____   
+   
+introdotto bootstrap 4.4.1 in public/bootstrap-4.4.1, ma ancora inutilizzato
+sviluppata pagina "richiesta", con il form e l'invio della mail.
+
+____ Friuli a Domicilio v.0.0.4 _____   
+   
+Rinominata Tricesimo.php in Home.php e cancellata vecchia home.
+Spostato tutto da showme() a index()
+Modificati puntamenti dall'header
+Creata la cartella C:\xampp\htdocs\Friuliadomicilio\development\0.0.4\app\Database\MyScripts
+Aggiunta sul controller Tricesimo flashdata (cercare $_SESSION['mail_sent_ok'] )
+
+____ Friuli a Domicilio v.0.0.5 _____ 
+
+Creati i file di script di creazione DB ed insert:
+FriuliDomicilio_Create_00_Tables_v0.0.5.sql
+FriuliDomicilio_Insert_00_E_Nations_v0.0.5.sql
+FriuliDomicilio_insert_01_E_Regions_v0.0.5.sql
+FriuliDomicilio_Insert_02_E_Provinces_v0.0.5.sql
+FriuliDomicilio_insert_03_E_Cities_Italy_v0.0.5.sql (non bisogna usarlo per ora)
+FriuliDomicilio_insert_03_E_Cities_FVG_v0.0.5.sql
+Configurate info connessione in Database.php
+Comprato e scompattato il tema Foogra e messo in public/
+
+____ Friuli a Domicilio v.0.0.5 _____ 
+Le vecchie view messe in views/templates/old, in modo da ricreare sulla base del nuovo template le viste
+
+
+____ Friuli a Domicilio v.0.0.6 _____ 07/05/2020 ____
+Rifatta la view registra.php per adattarla al nuovo template e il controller Registra.php
+Creata template/closure.php per albergare gli script js.
+Implementato il catch della data di invio mail tramite la fz now() dell'helper date, va capito come fare il parsing
+Il tasto submit del form riceve adesso i dati dall'array $data
+
+
+____ Friuli a Domicilio v.0.0.7 _____ 08/05/2020 ____
+Iniziata implementazione di pagina Contatti
+Implementato script js per popup GDPR
+Fatta la nuova home con i file 
+      echo view('pages/home/home_1_top_search', $data);
+      echo view('pages/home/home_2_popular_categories', $data);
+      echo view('pages/home/home_3_popular_restaurants', $data);
+      echo view('pages/home/home_4_best_deals', $data);
+      echo view('pages/home/home_5_banner', $data);
+      echo view('pages/home/home_6_owner', $data);
+Scorporato il form per contattare automaticamente in form/form_contatti.php, in modo da poterlo chiamare sia dalla pagina "contatti" che dalla pagina "registra la tua attività"
+
+
+____ Friuli a Domicilio v.0.0.8 ___ 08/05/2020 ____
+A partire dalla considerazione "Dato che utilizziamo, ad esempio, il form per essere contattati in più viste, potrebbe valere la pena di mettere la funzione che attualmente è nel Controller “Registra.php” sotto un modello dedicato ai Form.", spostati le fz invia_form e form_data nel model FormsModel
+Sistemato tutto il discorso di gestione dell'invio dei form da contatti.php e da registra.php
+Utilizzati i nuovi loghi: logo_fad_bianco.svg e logo_fad_colori_naturali.svg
+Cambiato il colore generale del motivo dal verdognolo di prima (RGB(88, 148, 66), hex #589442) all'azzurro bandiera Friuli (RGB(0,110,182), hex #006eb6) o giallo aquila Friuli (RGB(255, 221, 53), hex #ffdd35)
+
+____ Friuli a Domicilio v.0.0.9 ___ 09/05/2020 ____
+Introdotta la distinzione tra header fisso e header a scomparsa tramite il valore $data['tipo_header'], implementato in ciascun controller
+Implementata vista mockup per ricerca attività chiamata da controller Ricerca
+
+____ Friuli a Domicilio v.0.0.10 ___ 10/05/2020 ____
+Pulitura schermata "Home" lasciando solo le viste per il primo prototipo
+implementato ciclo foreach() in include.php per permettere il caricamento di multipli file css specifici.
+implementate immagini su attività popolari in home
+implementato nuovo campo tipo_richiedente nel form form_contatti
+Sistemati css e js in pagina 404
+
+
+____ Friuli a Domicilio v.0.0.11 ___ 11/05/2020 ____
+Creata sezione "Anteprima" nell'header
+inserito link #form_contatti nel form, per poterlo chiamare direttamente
+Sostituito modulo prezzi su pagina principale con offerta di valore Friuli a Domicilio.
+Implementato checkbox consenso privacy per form di contatto.
+Inserito controllo "i'm not a robot" nel form di contatto.
+Nascosta la pagina "registra" dal menu nell'header, lasciata solo "contattaci".
+Implementata la pagina di privacy
+RILASCIATO IN PROD su beta.friuliadomicilio.it e su www.friuliadomicilio.it in data 11/05/2020
+
+____ Friuli a Domicilio v.0.0.12 ___ 14/05/2020 ____
+Rinominato permanentemente System/ThirdParty/Kint/kint.php in Kint.php
+Cambiato dentro public/.htaccess la stringa "index.php" in "index.php?" (aggiunto punto di domanda)
+Creato permamentemente nella cartella radice file .htaccess dal contenuto seguente. Da monitorare se da problemi in localhost. (il secondo domain link per beta andrà cambiato in beta.friuliadomicilio.it)
+   RewriteEngine on
+   RewriteCond %{HTTP_HOST} ^friuliadomicilio.it$ [NC,OR]
+   RewriteCond %{HTTP_HOST} ^www.friuliadomicilio.it$
+   RewriteCond %{REQUEST_URI} !public/
+   RewriteRule (.*) /public/$1 [L]
+Spostato avviso rosso "Attenzione: Questa è una pagina di anteprima, il sito è in fase di implementazione" al posto del box di ricerca, per renderlo visibile anche da mobile
+Corretta stringa "Sentiti libero di lasciarci un messaggio" nella vista contatti_1
+
+___ Friuli a Domicilio v.0.0.13 ___ 15/05/2020 ____
+Creata nuova versione script create "FriuliDomicilio_Create_00_Tables_v0.0.13.sql" contenente le operazioni di create per E_Delivery_Routes, E_Shops, E_Categories, E_Files, T_File_Types.
+Note: testato OK create tutte le tabelle "Friu...v0.0.13.sql
+Ritestato OK insert E_Cities, E_Provinces, E_Regions, E_Nations.
+Creato nuovo file per script di insert "FriuliDomicilio_insert_04_Configuration_Data_v0.0.13.sql" --> Testato, insert OK.
+Creato nuovo file per script di insert "FriuliDomicilio_insert_05_E_Shops_v0.0.13.sql".  --> Testato, insert OK.
+Creato nuovo file per script di insert "FriuliDomicilio_insert_06_Tabelle_dettaglio_negozi_v0.0.13.sql".  --> Testato, insert OK.
+Implementato ShopsModel.php, implementata prima funzione get_e_categories() che viene poi usata dal controller /ricerca per visualizzare le categorie in ricerca_mockup
+Riga 35 jquery.cookiebar.js, modificato policyURL al valore '/privacy' (da testare in produzione)
+Implementata ricerca negozi su maschera "ricerca"
+Implementato caricamento categorie reali da maschera "ricerca"
+Implementato caricamento "categorie più richieste" da home
+Implementato caricamento "ristoranti più richiesti", ma va corretta ristoranti_da_non_perdere()
+
+___ Friuli a Domicilio v.0.0.14 ___ 19/05/2020 ____
+Incominciata implementazione di controller "Dettaglio.php"
+Risolto problema "Trying to get property ... of non-object" in ristoranti_da_non_perdere() in Home.php. L'abbiamo risolta facendo uso di getRow() anziché di getResult(), in modo da ritornare di sicuro solamente una riga.
+Implementata la vista di Dettaglio (controller Dettaglio.php, viste in ../dettaglio/)
+Creato negozio "Wing Chun Kung Fu Udine".
+Aggiustata immagine in fondo a home sarpi2.jpg (il problema era la lettera iniziale, Linux è case sensitive.
+Inserita terza categoria "servizio online" 
+corretta descrizione sito web per quando condiviso su whatsapp/social, era il tag meta name="description"> in include.php, da testare sui social. Capire come fare per quando viene condivisa immagine sito sui social.
+
+___ Friuli a Domicilio v.0.0.15 ___ 24/05/2020 ____
+Implementata estrazione categorie in ricerca homepage
+Implementata ricerca con query da menu principale
+Rinominato FormsModel.php in FormsContattiModel.php, rinominati i puntamenti dai controller che caricavano 
+Creati  FormsRicercaModel.php e FormsContactShopModel.php
+Implementata RicercaModel per la query di ricerca degli shops
+Implementato il passaggio delle coordinate da /home a /ricerca
+Implementati i filtri di ricerca su /ricerca
+Risolto bug per cui i filtri di ricerca su /ricerca vanno sul footer
+Corretto dimensionamento logo pagina principale
+Resi in minuscolo tutte le chiamate o riferimenti a campi del database
+Crato DB in locale chiamato my_friuliadomicilio_v0.0.15 con tutte i nomi di tabelle e campi in munuscolo approfittando del fatto che devo ricreare il DB integro i campi "_visible" anche in e_nations, e_regions, e_provinces ed e_cities
+Fatto in modo che la ricerca da /ricerca quando si clicchi su "filtra" non ricarichi tutta la pagina ma solamente i risultati tramite JQuery (file roberto-ajax-risultati-ricerca.js).
+
+
+___ Friuli a Domicilio v.0.0.16 ___ 29/05/2020 ____
+sostituito dentro "public\foogra_v.1.2\html\css\listing.css" la stringa "max-width: 991px" con "max-width: 0px" per non far scomparire il form con i filtri dentro /ricerca.
+sostituito dentro "public\foogra_v.1.2\html\js\specific_listing.js" la stringa "minWidth: 991" con "minWidth: 0" per non far scomparire il form con i filtri dentro /ricerca.
+   Nota: solo Ricerca.php carica il css e il js listing.css e specific_listing.js.
+Sostituite in "<!-- Favicons-->" in Views/templates/include.php con /pictures/favicons/favicons_blu_bianco-llxll.png per la condivisione sui social (non testabile su localhost)
+Modificate le proporzioni dell'aside e dei risultati in ricerca_02_mappa.php e ricerca_04_risultati.php affinché il rapporto rimanga 3-9 su desktop e sia 4-8 su tablet e cellulare
+RILASCIATO IN PROD su beta.friuliadomicilio.it e su www.friuliadomicilio.it in data 29/05/2020
+
+
+___ Friuli a Domicilio v.0.0.17 ___ 29/05/2020 ____
+Rimosse da homepage (o meglio, trasformate in hidden) la ricerca per contenuto e per categoria, lasciato solo indirizzo.
+Inserita descrizione su utilizzo filtri in testata di /ricerca
+Modificato ordine tra "popular categories" e "popular restaurants" in homepage
+Aggiunto wing chung kung fu tra i ristoranti da non perdere
+RILASCIATO IN PROD su www.friuliadomicilio.it in data 31/05/2020
+
+___ Friuli a Domicilio v.0.0.18 ___ 31/05/2020 ____
+implementato il file roberto-autocomplete-text-changed con tutte le relative funzioni per prendere automaticamente il primo risultato della lista e per popolarlo al cliccare su cerca. Da testare se funziona da mobile.
+
+___ Friuli a Domicilio v.0.0.19 ___ 01/06/2020 ____
+Aggiunta sitemap in public/sitemap.xml
+Corrette le dimensioni di alcune fotografie che rallentavano i caricamenti
+Commentato il caricamento di /foogra_v.1.2/html/css/style.css sulla pagina principale e lasciato solo custom.css (tutto style è dentro custom).
+aggiunto il preaload per custom.css in include.php
+sostituito favicon.ico con l'aquila del friuli anche in C:\xampp\htdocs\Friuliadomicilio\development\0.0.19\public\foogra_v.1.2\html\img
+
+___ Friuli a Domicilio v.0.0.20 ___ 07/06/2020 ____
+Nuovo script per modificare descrizione mia
+
+
+
+NOTE DA FARE:
+Nella tabella R_E_Shops_E_Categories può potenzialmente inserire due volte lo stesso record. Andrà poi fatto un select distinct sulla query di select per non visualizzare due volte righe con Id Diversi ma uguali riferimenti a E_Shops e E_Categories.
+Database: capire come mai copiando da Google Fogli mi mette quei simboli " dentro le stringhe, però forse è un problema solo copiando da google fogli.
+Inserire ricerca su mappa Google Maps.
+Pensare ad inserire anche le coordinate sulla tabella delle E_Cities, associando ad ogni comune il suo punto centrale.
+Implementare mappa direttamente dentro il controller "ricerca" prendendo ispiraziona da "listing with map".
+Impostare la geolocalizzazione del browser dell'utente per captarne le coordinate invece di usare Udine come default.
+
+
+
+
+
+
