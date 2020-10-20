@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'https://localhost/Friuliadomicilio/development/0.1.01/public';
+	public $baseURL = 'https://localhost/Friuliadomicilio/development/friuli-a-domicilio/public';
 
 	/*
 	|--------------------------------------------------------------------------

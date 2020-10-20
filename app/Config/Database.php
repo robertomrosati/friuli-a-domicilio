@@ -34,7 +34,7 @@ class Database extends \CodeIgniter\Database\Config
 		'hostname' => 'localhost',
 		'username' => 'root',
 		'password' => 'password',
-		'database' => 'my_friuliadomicilio_v0.0.15',
+		'database' => 'my_friuli-a-domicilio_test',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
